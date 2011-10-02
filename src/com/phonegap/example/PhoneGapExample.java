@@ -1,9 +1,10 @@
-package com.phonegap.exampleapp;
+package com.phonegap.example;
 
+import android.app.Activity;
 import android.os.Bundle;
 import com.phonegap.*;
 
-public class exampleapp extends DroidGap
+public class PhoneGapExample extends DroidGap
 {
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -12,3 +13,4 @@ public class exampleapp extends DroidGap
         super.loadUrl("file:///android_asset/www/index.html");
     }
 }
+
