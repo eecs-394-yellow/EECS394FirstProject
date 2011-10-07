@@ -57,6 +57,14 @@ you need to set it up and tear it down in each test.
         assertEquals(msg ? msg : '', b, a);
     };
     
+    window.strictEqual = function(a, b, msg) {
+        assertSame(msg ? msg : '', b, a);
+    };
+    
+    window.notStrictEqual = function(a, b, msg) {
+        assertNotSame(msg ? msg : '', b, a);
+    };
+    
     window.start = window.stop = function() {
         fail('start and stop methods are not available when using JS Test Driver.\n' +
             'Use jsUnit Clock object to deal with timeouts and intervals:\n' + 

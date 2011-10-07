@@ -1,5 +1,5 @@
-module("Module A");
+module("Basic-Info Tests");
 
 test("Sample test for basic infomation", function() {
-  equal("Name: Peter", AddName("Peter"), "Wrong!");
+  equal(AddName("Peter"), "Name: Peter <br>", "Wrong!");
 });
