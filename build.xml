@@ -76,19 +76,40 @@
              - customize to your needs.
     -->
     <setup />
-    
-    <target name="test">
-      <property file="jsTestDriver.properties" />
-      <exec dir="." executable="cmd">
-        <arg value="/c" />
-        <arg value="JsTestDriver-init.bat" />
-        <arg value="${jtd.port}" />
+
+
+<!-- The following will prevent the 'android' tool from overwriting this file.
+
+     (until sdk r12)
+     classname="com.android.ant.SetupTask"
+
+     (since sdk r13 FIXME)
+     version-tag:custom
+-->
+
+
+<!-- jsTestDriver.properties contains the local configuration settings
+    for JsTestDriver and the Android emulator.
+    This file should *NOT* be checked into Version Control Systems.
+-->
+    <property file="jsTestDriver.properties" />
+
+
+    <target name="test-android">
+      <exec dir="." executable="python" failonerror="true">
+        <arg value="jtd-android-init.py" />
         <arg value="${sdk.dir}" />
         <arg value="${jtd.avd}" />
         <arg value="${jtd.delay}" />
+        <arg value="${jtd.path}" />
+        <arg value="${jtd.port}" />
+        <arg value="all" />
       </exec>
-      <echo>Running tests:</echo>
-      <java jar="JsTestDriver.jar" failonerror="true" fork="true">
+    </target>
+
+
+    <target name="test-desktop">
+      <java jar="${jtd.path}" failonerror="true" fork="true">
         <arg value="--port" />
         <arg value="${jtd.port}" />
         <arg value="--browser" />
@@ -97,5 +118,21 @@
         <arg value="all" />
       </java>
     </target>
+
+
+    <target name="test-all-platforms">
+      <exec dir="." executable="python" failonerror="true">
+        <arg value="jtd-android-init.py" />
+        <arg value="${sdk.dir}" />
+        <arg value="${jtd.avd}" />
+        <arg value="${jtd.delay}" />
+        <arg value="${jtd.path}" />
+        <arg value="${jtd.port}" />
+        <arg value="all" />
+        <arg value="--browser" />
+        <arg value="${jtd.browser}" />
+      </exec>
+    </target>
+
 
 </project>
