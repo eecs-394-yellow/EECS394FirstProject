@@ -1,2 +1,9 @@
 local.properties
 jsTestDriver.properties
+*.DS_Store
+*.apk
+*.ap_
+*.dex
+*.class
+bin/
+gen/
