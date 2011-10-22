@@ -11,34 +11,31 @@ body{
 	font:15px Calibri,Arial,sans-serif;
 }
 
-#page{
-	width:430px;
-	margin: auto;
-}
-
-#page h1{
+h1{
 	margin-bottom: 20px;
 	width:330px;
 	height:36px;
 }
 
-#page h2{
+h2{
 	margin-bottom: 10px;	
 }
 
-
-
-#page button{
+button{
 	margin:20px auto;
 	width:200px;
 	height:30px;
 }
-#page textarea{
+
+textarea{
 	margin:20px auto;
 	width:400px;
 	height:40px;
 }
 
+textarea[name=formText]{
+	height: 120px;
+}
 
 #footer h1{
 	font-size:20px;
@@ -50,32 +47,28 @@ body{
 	width:400px;
 }
 
-a, a:visited {
-	text-decoration:none;
-	outline:none;
-	border-bottom:1px dotted #97cae6;
-	color:#97cae6;
+.page{
+	width:430px;
+	margin: auto;
 }
 
-a:hover{
-	border-bottom:1px dashed transparent;
+.userNote{
+	width: 400px;
+	margin-bottom: 20px;	
+	border-top:1px solid;
+}
+
+.readNote{
+	padding-top: 20px;
 }
 
 .clear{
 	clear:both;
 }
 
-.userPost{
-	width: 400px;
-	margin-bottom: 10px;	
-}
-
-.readPost{
-	border-top: 1px ridge #FFF;
-	padding-top: 20px;
-}
+/* Can be addded later
 
 .postSettings{
 	margin-bottom: 20px;
 }
-
+*/
