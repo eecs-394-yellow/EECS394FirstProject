@@ -104,6 +104,8 @@
         <arg value="JsTestDriver.jar" />
         <arg value="${jtd.port}" />
         <arg value="all" />
+        <arg value="--testOutput" />
+        <arg value="test-reports" />
       </exec>
     </target>
 
@@ -116,6 +118,8 @@
         <arg value="${jtd.browser}" />
         <arg value="--tests" />
         <arg value="all" />
+        <arg value="--testOutput" />
+        <arg value="test-reports" />
       </java>
     </target>
 
@@ -131,7 +135,16 @@
         <arg value="all" />
         <arg value="--browser" />
         <arg value="${jtd.browser}" />
+        <arg value="--testOutput" />
+        <arg value="test-reports" />
       </exec>
     </target>
+	
+	
+	<target name="clean-test-reports">
+      <delete>
+        <fileset dir="test-reports" includes="**/TEST-*.xml"/>
+      </delete>
+	</target>
 
 </project>

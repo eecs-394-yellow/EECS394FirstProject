@@ -1,5 +1,6 @@
 local.properties
 jsTestDriver.properties
+tests/results/**/*
 *.DS_Store
 *.apk
 *.ap_
