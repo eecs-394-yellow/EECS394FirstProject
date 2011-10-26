@@ -29,11 +29,13 @@ function refreshList() {
     url: "http://geonotes.nfshost.com/list.php"
   }).done(function( notes ) {
     var numNotes = notes.length;
+    $('.notes .note').addClass('old');
     for (var i=0; i < numNotes; i++)
       {
         // Add each note to the page
-        var note = notes[i];
-        if ($('.note-' + note.note_id).length === 0)
+        var note = notes[i],
+          $existingNote = $('.note-' + note.note_id);
+        if ($existingNote.length === 0)
           {
             var $location = $('<div class="location-description"><span class="label">Location:</span></div>').append(note.location_description),
               $latlong = $('<div class="latlong"><span class="label">GPS Coordinates:</span></div>').append(note.lat + ', ' + note.lon),
@@ -53,13 +55,29 @@ function refreshList() {
               }, 500, 'swing');
             });
           }
+        else
+          {
+            $existingNote.removeClass('old');
+          }
       }
+      $('.notes .old').fadeOut(function() {
+        $(this).remove();
+      });
   });
 }
 
 function clearForm() {
   $('.write-note textarea').each(function() {
     $(this).val('');
+  });
+}
+
+function clearNotes() {
+  $.ajax({
+    url: "http://geonotes.nfshost.com/clear.php"
+  });
+  $('.notes .note').fadeOut(function() {
+    $(this).remove();
   });
 }
 
@@ -75,6 +93,10 @@ $(document).ready(function() {
 	$('#list-refresh-button').click(function() {
 		refreshList();
 	});
+
+  $('#clear-notes-button').click(function() {
+    clearNotes();
+  });
 
 });
 
