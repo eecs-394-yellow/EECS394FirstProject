@@ -8,3 +8,5 @@ tests/results/**/*
 *.class
 bin/
 gen/
+/nbproject/private/
+/.settings/
