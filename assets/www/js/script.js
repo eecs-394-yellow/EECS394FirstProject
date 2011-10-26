@@ -6,13 +6,15 @@ function submitNote() {
 		var noteText = $('textarea[name="formText"]').val();
     
 		$.ajax({
-			type: "GET",
+      dataType: 'jsonp',
 			url: "http://geonotes.nfshost.com/add_note.php", //need to find DB url
 			data: {
 				device_id: 1, // PhoneGap API method: device.uuid
-				author: noteAuthor,
-				location: noteLocation,
-				note: noteText
+				user_name: noteAuthor,
+				location_text: noteLocation,
+				note: noteText,
+        lat: 80,
+        lon: 80
 			}
 		}).done(function() {
 			//clear form
@@ -24,25 +26,26 @@ function submitNote() {
 
 function refreshList() {
   $.ajax({
-    type: "GET",
-    dataType: 'json',
+    dataType: 'jsonp',
     url: "http://geonotes.nfshost.com/list.php" //need to find DB url
   }).done(function( notes ) {
     var numNotes = notes.length;
     for (var i=0; i < numNotes; i++)
       {
-        if ($('.note-' + note.id).length > 0)
+        // Add each note to the page
+        var note = notes[i];
+        if ($('.note-' + note.note_id).length === 0)
           {
-            // Add each note to the page
-            var note = notes[i];
-            var $location = $('<div class="noteLocationDescription"></div>').text(note.location_description);
-            var $latlong = $('<div class="latlong"></div>').text(note.gps);
-            var $author = $('<div class="noteAuthor"></div>').text(note.user_name);
-            var $text = $('<div class="noteText"></div>').text(note.note_text);
+            var $location = $('<div class="noteLocationDescription"></div>').text('Location: ' + note.location_description);
+            var $latlong = $('<div class="latlong"></div>').text('GPS Coordinates: ' + note.lat + ', ' + note.lon);
+            var $author = $('<div class="noteAuthor"></div>').text('User: ' + note.user_name);
+            var $text = $('<div class="noteText"></div>').text('Note: ' + note.note_text);
             var $note = $('<div class="userNote"></div>')
-              .addClass('note-' + note.id)
+              .addClass('note-' + note.note_id)
+              .hide()
               .append($location, $latlong, $author, $text);
             $('.notes').append($note);
+            $note.slideDown();
           }
       }
   });
