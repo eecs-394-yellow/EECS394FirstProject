@@ -36,16 +36,23 @@ function refreshList() {
         var note = notes[i];
         if ($('.note-' + note.note_id).length === 0)
           {
-            var $location = $('<div class="noteLocationDescription"></div>').text('Location: ' + note.location_description);
-            var $latlong = $('<div class="latlong"></div>').text('GPS Coordinates: ' + note.lat + ', ' + note.lon);
-            var $author = $('<div class="noteAuthor"></div>').text('User: ' + note.user_name);
-            var $text = $('<div class="noteText"></div>').text('Note: ' + note.note_text);
-            var $note = $('<div class="userNote"></div>')
-              .addClass('note-' + note.note_id)
-              .hide()
-              .append($location, $latlong, $author, $text);
-            $('.notes').append($note);
-            $note.slideDown();
+            var $location = $('<div class="location-description"><span class="label">Location:</span></div>').append(note.location_description),
+              $latlong = $('<div class="latlong"><span class="label">GPS Coordinates:</span></div>').append(note.lat + ', ' + note.lon),
+              $author = $('<div class="author"><span class="label">User:</span></div>').append(note.user_name),
+              $text = $('<div class="note-text"><span class="label">Note:</span></div>').append(note.note_text),
+              $note = $('<div class="note"></div>')
+                .addClass('note-' + note.note_id)
+                .hide()
+                .css('opacity', 0)
+                .append($author, $location, $latlong, $text);
+            $('.notes').prepend($note);
+            $note.animate({
+              height: 'show'
+            }, 500, 'swing', function() {
+              $(this).animate({
+                opacity: 1
+              }, 500, 'swing');
+            });
           }
       }
   });
