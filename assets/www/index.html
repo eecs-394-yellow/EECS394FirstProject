@@ -1,50 +1,49 @@
 <!DOCTYPE html>
 <head>
-<meta charset="UTF-8">
-<title>GeoNotes</title>
-<link rel="stylesheet" type="text/css" href="css/styles.css" />
+  <meta charset="UTF-8">
+  <title>GeoNotes</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
 </head>
 <body>
+
 <div class="page">
-	<h1>Welcome To GeoNotes</h1>
+  <h1>Welcome To GeoNotes</h1>
 
-        <div class="writeNote">
-       
-        <form action="index.php" method="post"> <!-- add DB url -->
-         
-		<h2>Write Note:</h2>
-        
-        <div class="author">
-        Your name:         
-        <textarea name="formAuthor" placeholder="First of all, what's your name..."></textarea>
-        </div>
-        
-        <div class="location">
-        Location tags:         
-        <textarea name="formLocation" placeholder="Tell everyone where you are..."></textarea>
-        </div>
-		
-        <div class="text">     
-		What do you want to say?    
-		<textarea name="formText" placeholder="Now let everyone know what's on your mind!"></textarea>
-        </div>
-        
-		<button id="note-submit" type="submit">Submit</button>
-        </form> 
+    <div class="write-note">
+      <form action="index.php" method="post">
+
+        <h2>Write a Note</h2>
+
+        <div class="author field">
+          <label for="author-field">Your name:</label>
+          <textarea id="author-field" name="author" placeholder="First of all, what's your name?"></textarea>
         </div>
 
-		<div class="readNote">
-        <h2>Read Notes:</h2>
-        <!-- Can be added later
-			<div class="postSettings">Within <a href="http://www.google.com">2 Miles</a> | <a href="hi.php">5 Miles</a> | <a>10 Miles</a></div> 
-		-->
-        
-    <div class="notes" style="width: 450px;">
-    </div> 
-		<button id="list-refresh" name="Refresh">Refresh</button>
-</div>
+        <div class="location field">
+          <label for="location-field">Location tags:</label>
+          <textarea id="location-field" name="location" placeholder="Tell everyone where you are..."></textarea>
+        </div>
+
+        <div class="text field">     
+          <label for="note-text-field">What do you want to say? </label>   
+          <textarea id="note-text-field" name="note-text" placeholder="Now let everyone know what's on your mind!"></textarea>
+        </div>
+
+        <button id="note-submit-button" type="submit">Submit</button>
+
+      </form>
     </div>
 
+    <div class="read-note">
+      <h2>Read Notes</h2>
+      <!-- Can be added later
+    <div class="postSettings">Within <a href="http://www.google.com">2 Miles</a> | <a href="hi.php">5 Miles</a> | <a>10 Miles</a></div>
+      -->
+      <div class="notes"></div>
+      <button id="list-refresh-button" name="refresh">Refresh</button>
+    </div>
+
+</div>
 
 <script src="js/jquery-1.6.4.min.js"></script>
 <script src="js/script.js"></script>

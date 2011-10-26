@@ -1,9 +1,9 @@
 (function (window, $) {
 
 function submitNote() {
-    var noteAuthor = $('textarea[name="formAuthor"]').val();
-		var noteLocation = $('textarea[name="formLocation"]').val();
-		var noteText = $('textarea[name="formText"]').val();
+    var noteAuthor = $('#author-field').val(),
+      noteLocation = $('#location-field').val(),
+      noteText = $('#note-text-field').val();
     
 		$.ajax({
       dataType: 'jsonp',
@@ -27,7 +27,7 @@ function submitNote() {
 function refreshList() {
   $.ajax({
     dataType: 'jsonp',
-    url: "http://geonotes.nfshost.com/list.php" //need to find DB url
+    url: "http://geonotes.nfshost.com/list.php"
   }).done(function( notes ) {
     var numNotes = notes.length;
     for (var i=0; i < numNotes; i++)
@@ -55,12 +55,12 @@ $(document).ready(function() {
 
   refreshList();
 
-	$('#note-submit').click(function() {
+	$('#note-submit-button').click(function() {
     submitNote();
-		return false; //make sure this turns off the default form behavior!
+		return false; //Turn off the default form behavior
 	});
 	
-	$('#list-refresh').click(function() {
+	$('#list-refresh-button').click(function() {
 		refreshList();
 	});
 

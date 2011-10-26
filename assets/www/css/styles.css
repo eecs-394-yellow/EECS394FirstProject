@@ -3,7 +3,9 @@
 	padding:0;
 }
 
-p{line-height:26px;}
+p {
+  line-height:26px;
+}
 
 body{
 	color:#262626;
@@ -36,23 +38,8 @@ textarea{
 	height:40px;
 }
 
-textarea[name=formText]{
+#note-text-field {
 	height: 120px;
-}
-
-#footer h1{
-	font-size:20px;
-	font-weight:normal;
-	left:50%;
-	margin-left:-400px;
-	padding:25px 0;
-	position:absolute;
-	width:400px;
-}
-
-.page{
-	width:430px;
-	margin: auto;
 }
 
 .userNote{
@@ -62,12 +49,17 @@ textarea[name=formText]{
 	padding-top: 20px;
 }
 
-.readNote{
+.read-note {
 	padding-top: 20px;
 }
 
-.clear{
-	clear:both;
+label,
+.label {
+  display: block;
+  font-weight: bold;
+  font-variant: small-caps;
+  letter-spacing: 1px;
+  margin-top: .5em;
 }
 
 /* Can be added later
