@@ -17,8 +17,7 @@ function submitNote() {
         lon: 80
 			}
 		}).done(function() {
-			//clear form
-			//refresh list
+      clearForm();
 			refreshList();
 		});
     
@@ -55,6 +54,12 @@ function refreshList() {
             });
           }
       }
+  });
+}
+
+function clearForm() {
+  $('.write-note textarea').each(function() {
+    $(this).val('');
   });
 }
 
