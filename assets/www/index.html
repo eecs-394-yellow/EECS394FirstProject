@@ -48,8 +48,40 @@
 </div>
 
 <script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.jqote2.min.js"></script>
 <script src="js/script.js"></script>
 <script src="js/placeholder.js"></script>
+
+<script type="text/x-jqote-template" id="note-template">
+  <![CDATA[
+  <div class="note note-<%= this.note_id %>">
+    <div class="location-description">
+      <span class="label">Location:</span>
+      <span class="value">
+        <%= this.location_description %>
+      </span>
+    </div>
+    <div class="lat-long">
+      <span class="label">GPS Coordinates:</span>
+      <span class="value">
+        <%= this.lat + ', ' + this.lon %>
+      </span>
+    </div>
+    <div class="author">
+      <span class="label">User:</span>
+      <span class="value">
+        <%= this.user_name %>
+      </span>
+    </div>
+    <div class="note-text">
+      <span class="label">Note:</span>
+      <span class="value">
+        <%= this.note_text %>
+      </span>
+    </div>
+  </div>
+  ]]>
+</script>    
 
 </body>
 </html>

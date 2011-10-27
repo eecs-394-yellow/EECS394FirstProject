@@ -1,5 +1,7 @@
 (function (window, $) {
 
+var noteTemplate;
+
 function submitNote() {
     var noteAuthor = $('#author-field').val(),
       noteLocation = $('#location-field').val(),
@@ -37,15 +39,7 @@ function refreshList() {
           $existingNote = $('.note-' + note.note_id);
         if ($existingNote.length === 0)
           {
-            var $location = $('<div class="location-description"><span class="label">Location:</span></div>').append(note.location_description),
-              $latlong = $('<div class="latlong"><span class="label">GPS Coordinates:</span></div>').append(note.lat + ', ' + note.lon),
-              $author = $('<div class="author"><span class="label">User:</span></div>').append(note.user_name),
-              $text = $('<div class="note-text"><span class="label">Note:</span></div>').append(note.note_text),
-              $note = $('<div class="note"></div>')
-                .addClass('note-' + note.note_id)
-                .hide()
-                .css('opacity', 0)
-                .append($author, $location, $latlong, $text);
+            var $note = $( $.jqote(noteTemplate, note) );
             $('.notes').prepend($note);
             $note.animate({
               height: 'show'
@@ -82,6 +76,8 @@ function clearNotes() {
 }
 
 $(document).ready(function() {
+
+  noteTemplate = $.jqotec('#note-template');
 
   refreshList();
 
