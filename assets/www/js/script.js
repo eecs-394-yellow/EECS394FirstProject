@@ -6,22 +6,41 @@ function submitNote() {
     var noteAuthor = $('#author-field').val(),
       noteLocation = $('#location-field').val(),
       noteText = $('#note-text-field').val();
-    
+}
+
+function getCoordinate() {
+	var success = function(position) {
+	  var coordinate = position.coords;
 		$.ajax({
-      dataType: 'jsonp',
+            dataType: 'jsonp',
 			url: "http://geonotes.nfshost.com/add_note.php", //need to find DB url
 			data: {
 				device_id: 1, // PhoneGap API method: device.uuid
 				user_name: noteAuthor,
 				location_text: noteLocation,
 				note: noteText,
-        lat: 80,
-        lon: 80
+				lat: coordinate.latitude,
+				lon: coordinate.longitude
 			}
 		}).done(function() {
       clearForm();
 			refreshList();
 		});
+	};
+	
+	var failure = function() {
+		alert('Error!');
+	};
+	navigator.geolocation.getCurrentPosition(success, failure, {enableHighAccuracy: true });
+}
+
+function submitNote() {
+    var noteAuthor = $('#author-field').val(),
+      noteLocation = $('#location-field').val(),
+      noteText = $('#note-text-field').val();
+	
+	getCoordinate();
+    
     
 }
 
@@ -104,5 +123,6 @@ $(document).ready(function() {
   });
 
 });
+
 
 })(window, jQuery);
