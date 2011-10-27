@@ -39,15 +39,7 @@ function refreshList() {
           $existingNote = $('.note-' + note.note_id);
         if ($existingNote.length === 0)
           {
-            var $note = $( $.jqote(noteTemplate, note) );
-            $('.notes').prepend($note);
-            $note.animate({
-              height: 'show'
-            }, 500, 'swing', function() {
-              $(this).animate({
-                opacity: 1
-              }, 500, 'swing');
-            });
+            addNote(note);
           }
         else
           {
@@ -60,16 +52,33 @@ function refreshList() {
   });
 }
 
+function addNote(note) {
+  // Render a note and add it to the page
+  var $note = $( $.jqote(noteTemplate, note) ).hide();
+  $('.notes').prepend($note);
+  $note.animate({
+    height: 'show'
+  }, 500, 'swing', function() {
+    $(this).animate({
+      opacity: 1
+    }, 500, 'swing');
+  });  
+}
+
 function clearForm() {
+  // Clear any text in the write-note form fields
   $('.write-note textarea').each(function() {
     $(this).val('');
   });
 }
 
 function clearNotes() {
+  // Delete all notes in the database
   $.ajax({
     url: "http://geonotes.nfshost.com/clear.php"
   });
+
+  // Remove the notes on the page
   $('.notes .note').fadeOut(function() {
     $(this).remove();
   });
