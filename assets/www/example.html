@@ -1,35 +1,92 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <meta name="viewport" content="width=320; user-scalable=no" />
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Yellow Team's Student Directory</title>
-	  <script type="text/javascript" charset="utf-8" src="js/phonegap-1.1.0.js"></script>
-	  <script type="text/javascript" charset="utf-8" src="js/jquery-1.6.4.min.js"></script>
-  </head>
-  <body onload="init();" id="stage" class="theme">
-    <h1>Welcome to Yellow's Team Student Directory!</h1>
-    <div id="profile">
-    	<div id="basic" class="student-info">
-    		<h2>Basic Information</h2>
-    		<div></div>
-    	</div>
-    	<div id="account" class="student-info">
-    		<h2>Account</h2>
-    		<div></div>
-    	</div>
-    	<div id="enrollment" class="student-info">
-    		<h2>Enrollment</h2>
-    		<div></div>
-    	</div>
-    	<div id="academics" class="student-info">
-    		<h2>My Academics</h2>
-    		<div></div>
-    	</div>
-		<div id="fav-foods" class="student-info">
-    		<h2>Favorite Foods</h2>
-    		<div></div>
-    	</div>
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>GeoNotes</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+</head>
+<body>
+
+<div class="page">
+  <h1>Welcome To GeoNotes</h1>
+
+    <div class="write-note">
+      <form action="index.php" method="post">
+
+        <h2>Write a Note</h2>
+
+        <div class="author field">
+          <label for="author-field">Your name:</label>
+          <textarea id="author-field" name="author" placeholder="First of all, what's your name?"></textarea>
+        </div>
+
+        <div class="location field">
+          <label for="location-field">Location tags:</label>
+          <textarea id="location-field" name="location" placeholder="Tell everyone where you are..."></textarea>
+        </div>
+
+        <div class="text field">     
+          <label for="note-text-field">What do you want to say? </label>   
+          <textarea id="note-text-field" name="note-text" placeholder="Now let everyone know what's on your mind!"></textarea>
+        </div>
+
+        <button id="note-submit-button" type="submit">Submit</button>
+
+      </form>
     </div>
-  </body>
+
+    <div class="read-note">
+      <h2>Read Notes</h2>
+      <!-- Can be added later
+    <div class="postSettings">Within <a href="http://www.google.com">2 Miles</a> | <a href="hi.php">5 Miles</a> | <a>10 Miles</a></div>
+      -->
+      <div class="notes">
+		<div class="note note-40" style="opacity: 1; ">
+		  <div class="author">
+		    <span class="label">User:</span>
+			"Ethan"
+		  </div>
+		  <div class="location-description">
+		    <span class="label">Location:</span>
+			"The Arch"
+		  </div>
+		  <div class="latlong">
+		    <span class="label">GPS Coordinates:</span>
+			"80, 80"
+		  </div>
+		  <div class="note-text">
+		    <span class="label">Note:</span>
+			"There\'s a hidden staircase under the flowerbed"
+		  </div>
+		</div>
+		<div class="note note-39" style="opacity: 1; ">
+		  <div class="author">
+			<span class="label">User:</span>
+			"Matt"
+		  </div>
+		  <div class="location-description">
+			<span class="label">Location:</span>
+			"Unicorn Cafe"
+		  </div>
+		  <div class="latlong">
+			<span class="label">GPS Coordinates:</span>
+			"80, 80"
+		  </div>
+		  <div class="note-text">
+			<span class="label">Note:</span>
+			"Try the coffee!"
+		  </div>
+		</div>
+	  </div>
+      <button id="list-refresh-button" name="refresh">Refresh</button>
+    </div>
+
+  <button id="clear-notes-button">Clear Notes</button>
+
+</div>
+
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/placeholder.js"></script>
+
+</body>
 </html>

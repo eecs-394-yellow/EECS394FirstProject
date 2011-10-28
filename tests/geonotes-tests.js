@@ -1,15 +1,15 @@
 describe('GeoNotes Module', function() {
 
-  var testNotes = [
+  var testNote = [
 	{
-		note_id:"19",
+		note_id:"41",
 		device_id:"01000000-0000-0000-0000-000000000000",
 		user_name:"Test",
-		time:"2011-10-26 15:42:42",
+		time:"2011-10-28 11:36:00",
 		location_description:"Test",
 		lat:"80",
 		lon:"80",
-		note_text:"Hello, world!"
+		note_text:"Oh hai guise"
 	}];
 
   beforeEach(function() {
