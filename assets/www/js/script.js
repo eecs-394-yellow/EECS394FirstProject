@@ -16,7 +16,7 @@ function submitNote() {
 
     $.ajax({
       dataType: 'jsonp',
-      url: "http://geonotes.nfshost.com/add_note.php", //need to find DB url
+      url: "http://geonotes.nfshost.com/add_note.php",
       data: {
         device_id: 1, // PhoneGap API method: device.uuid
         user_name: noteAuthor,

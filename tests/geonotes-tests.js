@@ -16,8 +16,15 @@ describe('GeoNotes Module', function() {
     loadFixtures('example.html');
   });
 
+  /*
+  describe('writeNote', function() {
+    it('should properly display a newly-written note', function() {
+    });
+  });
+  */
+  
   describe('readNotes', function() {
-    it('should load the old notes', function() {
+    it('should load the old notes', function() {	
       expect($('.note')).toExist();
 	  expect($('.note')).toBeVisible();
     });
@@ -26,19 +33,10 @@ describe('GeoNotes Module', function() {
       expect($('.note')).toExist();
 	  expect($('.note')).toBeVisible();
     });
-	it('should clear the page upon clicking clear page button ', function() {
+	it('should clear the page upon clicking clear page button', function() {
 	  $('#clear-notes-button').click();
 	  $('#list-refresh-button').click();
       expect($('.note')).not.toExist();
     });
   });
-/*
-  describe('writeNote', function() {
-    it('should update field text', function() {
-      testFields.add('name', 'value');
-      testFields.update('name', 'new value');
-      expect($('.field-name').find('.value')).toHaveText('new value');
-    });
-  });
-*/
 });
