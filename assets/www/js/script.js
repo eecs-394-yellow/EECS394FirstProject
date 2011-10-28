@@ -3,14 +3,13 @@
 var noteTemplate;
 
 function submitNote() {
-    var noteAuthor = $('#author-field').val(),
-      noteLocation = $('#location-field').val(),
-      noteText = $('#note-text-field').val();
-}
-
-function getCoordinate() {
   var success = function(position) {
-    var coordinate = position.coords;
+
+    var coordinate = position.coords,
+	    noteAuthor = $('#author-field').val(),
+		  noteLocation = $('#location-field').val(),
+		  noteText = $('#note-text-field').val();
+
     $.ajax({
       dataType: 'jsonp',
       url: "http://geonotes.nfshost.com/add_note.php", //need to find DB url
@@ -26,20 +25,14 @@ function getCoordinate() {
       clearForm();
       refreshList();
     });
+
   };
   
   var failure = function() {
     alert('Error!');
   };
-  navigator.geolocation.getCurrentPosition(success, failure, {enableHighAccuracy: true });
-}
-
-function submitNote() {
-  var noteAuthor = $('#author-field').val(),
-	  noteLocation = $('#location-field').val(),
-	  noteText = $('#note-text-field').val();
   
-  getCoordinate();
+  navigator.geolocation.getCurrentPosition(success, failure, { enableHighAccuracy: true });
 }
 
 function refreshList() {
