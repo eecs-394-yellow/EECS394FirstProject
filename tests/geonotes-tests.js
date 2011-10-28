@@ -18,20 +18,17 @@ describe('GeoNotes Module', function() {
 
   describe('readNotes', function() {
     it('should load the old notes', function() {
-      expect($('#note%20note-40')).toExist();
-	  expect($('#note%20note-39')).toExist();
+      expect($('.note')).toExist();
+	  expect($('.note')).toBeVisible();
     });
     it('should not break anything when refresh button clicked with no new content', function() {
-      var button = $('#list-refresh-button');
-	  button.click();
-      expect($('#note%20note-40')).toExist();
-	  expect($('#note%20note-39')).toExist();
+	  $('#list-refresh-button').click();
+      expect($('.note')).toExist();
+	  expect($('.note')).toBeVisible();
     });
 	it('should clear the page upon clicking clear page button ', function() {
-      var button = $('#clear-notes-button');
-	  button.click();
-      expect($('#note%20note-40')).not.toExist();
-	  expect($('#note%20note-39')).not.toExist();
+	  $('#clear-notes-button').click();
+      expect($('.note')).not.toExist();
     });
   });
 /*
