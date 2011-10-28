@@ -1,12 +1,10 @@
 (function (window, $) {
 
-var noteTemplate;
+var noteTemplate,
+	currentPosition;
 
 function submitNote() {
-  var success = function(position) {
-
-    var coordinate = position.coords,
-	    noteAuthor = $('#author-field').val(),
+    var noteAuthor = $('#author-field').val(),
 		  noteLocation = $('#location-field').val(),
 		  noteText = $('#note-text-field').val();
 
@@ -18,21 +16,17 @@ function submitNote() {
         user_name: noteAuthor,
         location_text: noteLocation,
         note: noteText,
-        lat: coordinate.latitude,
-        lon: coordinate.longitude
+        lat: currentPosition.latitude,
+        lon: currentPosition.longitude
       }
     }).done(function() {
       clearForm();
       refreshList();
     });
+}
 
-  };
-  
-  var failure = function() {
-    alert('Error!');
-  };
-  
-  navigator.geolocation.getCurrentPosition(success, failure, { enableHighAccuracy: true });
+function logGPSError() {
+	console.log('Error polling GPS coordinates');
 }
 
 function refreshList() {
@@ -94,10 +88,15 @@ function clearNotes() {
   });
 }
 
+function updateCurrentPosition(position) {
+	currentPosition = position.coords;
+	$('.current-gps-coordinates span').text(currentPosition.latitude + ', ' + currentPosition.longitude);
+}
+
 $(document).ready(function() {
 
   noteTemplate = $.jqotec('#note-template');
-
+  
   refreshList();
 
   $('#note-submit-button').click(function() {
@@ -112,6 +111,13 @@ $(document).ready(function() {
   $('#clear-notes-button').click(function() {
     clearNotes();
   });
+  
+  // Update the current position when the page first loads
+  // and whenever the device's GPS location changes in the future
+  navigator.geolocation.getCurrentPosition(function(position) {
+	  	updateCurrentPosition(position);
+		  navigator.geolocation.watchPosition(updateCurrentPosition, logGPSError, { enableHighAccuracy: true, maximumAge: 2000 });
+	  }, logGPSError, { enableHighAccuracy: true });
 
 });
 
