@@ -9,39 +9,37 @@ function submitNote() {
 }
 
 function getCoordinate() {
-	var success = function(position) {
-	  var coordinate = position.coords;
-		$.ajax({
-            dataType: 'jsonp',
-			url: "http://geonotes.nfshost.com/add_note.php", //need to find DB url
-			data: {
-				device_id: 1, // PhoneGap API method: device.uuid
-				user_name: noteAuthor,
-				location_text: noteLocation,
-				note: noteText,
-				lat: coordinate.latitude,
-				lon: coordinate.longitude
-			}
-		}).done(function() {
+  var success = function(position) {
+    var coordinate = position.coords;
+    $.ajax({
+      dataType: 'jsonp',
+      url: "http://geonotes.nfshost.com/add_note.php", //need to find DB url
+      data: {
+        device_id: 1, // PhoneGap API method: device.uuid
+        user_name: noteAuthor,
+        location_text: noteLocation,
+        note: noteText,
+        lat: coordinate.latitude,
+        lon: coordinate.longitude
+      }
+    }).done(function() {
       clearForm();
-			refreshList();
-		});
-	};
-	
-	var failure = function() {
-		alert('Error!');
-	};
-	navigator.geolocation.getCurrentPosition(success, failure, {enableHighAccuracy: true });
+      refreshList();
+    });
+  };
+  
+  var failure = function() {
+    alert('Error!');
+  };
+  navigator.geolocation.getCurrentPosition(success, failure, {enableHighAccuracy: true });
 }
 
 function submitNote() {
-    var noteAuthor = $('#author-field').val(),
-      noteLocation = $('#location-field').val(),
-      noteText = $('#note-text-field').val();
-	
-	getCoordinate();
-    
-    
+  var noteAuthor = $('#author-field').val(),
+	  noteLocation = $('#location-field').val(),
+	  noteText = $('#note-text-field').val();
+  
+  getCoordinate();
 }
 
 function refreshList() {
@@ -109,14 +107,14 @@ $(document).ready(function() {
 
   refreshList();
 
-	$('#note-submit-button').click(function() {
+  $('#note-submit-button').click(function() {
     submitNote();
-		return false; //Turn off the default form behavior
-	});
-	
-	$('#list-refresh-button').click(function() {
-		refreshList();
-	});
+    return false; //Turn off the default form behavior
+  });
+  
+  $('#list-refresh-button').click(function() {
+    refreshList();
+  });
 
   $('#clear-notes-button').click(function() {
     clearNotes();
