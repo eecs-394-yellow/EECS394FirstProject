@@ -18,29 +18,29 @@ describe('GeoNotes Module', function() {
 
   describe('readNotes', function() {
     it('should load the old notes', function() {
-      expect($note note-40).toExist();
-	  expect($note note-39).toExist();
+      expect($('#note%20note-40')).toExist();
+	  expect($('#note%20note-39')).toExist();
     });
-    it('should not create a field without a name', function() {
-      testFields.add('', 'value');
-      expect($('.field')).not.toExist();
+    it('should not break anything when refresh button clicked with no new content', function() {
+      var button = $('#list-refresh-button');
+	  button.click();
+      expect($('#note%20note-40')).toExist();
+	  expect($('#note%20note-39')).toExist();
+    });
+	it('should clear the page upon clicking clear page button ', function() {
+      var button = $('#clear-notes-button');
+	  button.click();
+      expect($('#note%20note-40')).not.toExist();
+	  expect($('#note%20note-39')).not.toExist();
     });
   });
-
-  describe('update', function() {
+/*
+  describe('writeNote', function() {
     it('should update field text', function() {
       testFields.add('name', 'value');
       testFields.update('name', 'new value');
       expect($('.field-name').find('.value')).toHaveText('new value');
     });
   });
-
-  describe('delete', function() {
-    it('should remove field element', function() {
-      testFields.add('name', 'value');
-      testFields.remove('name');
-      expect($('.field-name')).not.toExist();
-    });
-  });
-
+*/
 });
