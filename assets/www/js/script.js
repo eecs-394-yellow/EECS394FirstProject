@@ -1,12 +1,17 @@
 (function (window, $) {
 
 var noteTemplate,
-	currentPosition;
+	currentPosition = null;
 
 function submitNote() {
     var noteAuthor = $('#author-field').val(),
 		  noteLocation = $('#location-field').val(),
 		  noteText = $('#note-text-field').val();
+    
+    if (currentPosition === null) {
+    	console.log("Error: Current GPS position could not be obtained before submitting form");
+    	return;
+    }
 
     $.ajax({
       dataType: 'jsonp',
@@ -43,7 +48,7 @@ function refreshList() {
           $existingNote = $('.note-' + note.note_id);
         if ($existingNote.length === 0)
           {
-            addNote(note);
+            addNoteToList(note);
           }
         else
           {
@@ -56,7 +61,7 @@ function refreshList() {
   });
 }
 
-function addNote(note) {
+function addNoteToList(note) {
   // Render a note and add it to the page
   var $note = $( $.jqote(noteTemplate, note) ).hide();
   $('.notes').prepend($note);
