@@ -20,7 +20,8 @@
         </div>
 
         <div class="location field">
-          <label for="location-field">Location tags:</label>
+          <label for="location-field">Location:</label>
+          <span class="current-gps-coordinates">Latitude, Longitude: <span></span></span>
           <textarea id="location-field" name="location" placeholder="Tell everyone where you are..."></textarea>
         </div>
 
@@ -41,52 +42,84 @@
       -->
       <div class="notes">
 		<div class="note note-40" style="opacity: 1; ">
-		  <div class="author">
-		    <span class="label">User:</span>
-			"Ethan"
-		  </div>
-		  <div class="location-description">
-		    <span class="label">Location:</span>
-			"The Arch"
-		  </div>
-		  <div class="latlong">
-		    <span class="label">GPS Coordinates:</span>
-			"80, 80"
-		  </div>
-		  <div class="note-text">
-		    <span class="label">Note:</span>
-			"There\'s a hidden staircase under the flowerbed"
-		  </div>
+			<div class="author">
+				<span class="label">User:</span>
+				"Ethan"
+			</div>
+			<div class="location-description">
+				<span class="label">Location:</span>
+				"The Arch"
+			</div>
+			<div class="latlong">
+				<span class="label">GPS Coordinates:</span>
+				"80, 80"
+			</div>
+			<div class="note-text">
+				<span class="label">Note:</span>
+				"There\'s a hidden staircase under the flowerbed"
+			</div>
 		</div>
 		<div class="note note-39" style="opacity: 1; ">
-		  <div class="author">
-			<span class="label">User:</span>
-			"Matt"
-		  </div>
-		  <div class="location-description">
-			<span class="label">Location:</span>
-			"Unicorn Cafe"
-		  </div>
-		  <div class="latlong">
-			<span class="label">GPS Coordinates:</span>
-			"80, 80"
-		  </div>
-		  <div class="note-text">
-			<span class="label">Note:</span>
-			"Try the coffee!"
-		  </div>
+			<div class="author">
+				<span class="label">User:</span>
+				"Matt"
+			</div>
+			<div class="location-description">
+				<span class="label">Location:</span>
+				"Unicorn Cafe"
+			</div>
+			<div class="latlong">
+				<span class="label">GPS Coordinates:</span>
+				"80, 80"
+			</div>
+			<div class="note-text">
+				<span class="label">Note:</span>
+				"Try the coffee!"
+			</div>
 		</div>
 	  </div>
       <button id="list-refresh-button" name="refresh">Refresh</button>
-    </div>
-
-  <button id="clear-notes-button">Clear Notes</button>
-
+	</div>
+	<button id="clear-notes-button">Clear Notes</button>
 </div>
 
 <script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.jqote2.min.js"></script>
+<script src="js/lat-lon.js"></script>
 <script src="js/script.js"></script>
 <script src="js/placeholder.js"></script>
+<script src="js/phonegap-1.1.0.js"></script>
+
+<script type="text/x-jqote-template" id="note-template">
+  <![CDATA[
+  <div class="note note-<%= this.note_id %>">
+    <div class="location-description">
+      <span class="label">Location:</span>
+      <span class="value">
+        <%= this.location_description %>
+      </span>
+    </div>
+    <div class="distance">
+      <span class="label">Distance:</span>
+      <span class="value">
+        <%= this.distance %>
+      </span>
+    </div>
+    <div class="author">
+      <span class="label">User:</span>
+      <span class="value">
+        <%= this.user_name %>
+      </span>
+    </div>
+    <div class="note-text">
+      <span class="label">Note:</span>
+      <span class="value">
+        <%= this.note_text %>
+      </span>
+    </div>
+  </div>
+  ]]>
+</script>    
 
 </body>
 </html>
