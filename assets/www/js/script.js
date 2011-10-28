@@ -6,8 +6,8 @@ var noteTemplate,
 
 function submitNote() {
     var noteAuthor = $('#author-field').val(),
-		  noteLocation = $('#location-field').val(),
-		  noteText = $('#note-text-field').val();
+		noteLocation = $('#location-field').val(),
+		noteText = $('#note-text-field').val();
     
     if (currentPosition === null) {
     	console.log("Error: Current GPS position could not be obtained before submitting form");
@@ -143,7 +143,7 @@ $(document).ready(function() {
   // and whenever the device's GPS location changes in the future
   navigator.geolocation.getCurrentPosition(function(position) {
 	  	updateCurrentPosition(position);
-		  navigator.geolocation.watchPosition(updateCurrentPosition, logGPSError, { enableHighAccuracy: true, maximumAge: 2000 });
+		navigator.geolocation.watchPosition(updateCurrentPosition, logGPSError, { enableHighAccuracy: true, maximumAge: 2000 });
 	  }, logGPSError, { enableHighAccuracy: true });
 
 });

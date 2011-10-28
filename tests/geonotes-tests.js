@@ -17,12 +17,9 @@ describe('GeoNotes Module', function() {
   });
 
   describe('readNotes', function() {
-    it('should create new field element', function() {
-      testFields.add('name', 'value');
-      var $field = $('.field-name');
-      expect($field).toExist();
-      expect($field.find('.name')).toHaveText('name');
-      expect($field.find('.value')).toHaveText('value');
+    it('should load the old notes', function() {
+      expect($note note-40).toExist();
+	  expect($note note-39).toExist();
     });
     it('should not create a field without a name', function() {
       testFields.add('', 'value');
