@@ -28,6 +28,7 @@ describe('GeoNotes Module', function() {
     });
 	it('should clear the page upon clicking clear page button ', function() {
 	  $('#clear-notes-button').click();
+	  $('#list-refresh-button').click();
       expect($('.note')).not.toExist();
     });
   });
