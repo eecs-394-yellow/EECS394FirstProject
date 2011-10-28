@@ -50,6 +50,7 @@
 
 <script src="js/jquery-1.6.4.min.js"></script>
 <script src="js/jquery.jqote2.min.js"></script>
+<script src="js/lat-lon.js"></script>
 <script src="js/script.js"></script>
 <script src="js/placeholder.js"></script>
 <script src="js/phonegap-1.1.0.js"></script>
@@ -63,10 +64,10 @@
         <%= this.location_description %>
       </span>
     </div>
-    <div class="lat-long">
-      <span class="label">GPS Coordinates:</span>
+    <div class="distance">
+      <span class="label">Distance:</span>
       <span class="value">
-        <%= this.lat + ', ' + this.lon %>
+        <%= this.distance %>
       </span>
     </div>
     <div class="author">

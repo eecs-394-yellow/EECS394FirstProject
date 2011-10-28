@@ -1,7 +1,8 @@
 (function (window, $) {
 
 var noteTemplate,
-	currentPosition = null;
+	currentPosition = null,
+	currentLatLon = null;
 
 function submitNote() {
     var noteAuthor = $('#author-field').val(),
@@ -63,6 +64,13 @@ function refreshList() {
 
 function addNoteToList(note) {
   // Render a note and add it to the page
+	noteLatLon = new LatLon(note.lat, note.lon);
+	if (currentLatLon !== null) {
+		note.distance = currentLatLon.distanceTo(noteLatLon);
+	}
+	else {
+		note.distance = '';
+	}
   var $note = $( $.jqote(noteTemplate, note) ).hide();
   $('.notes').prepend($note);
   $note.animate({
@@ -72,6 +80,7 @@ function addNoteToList(note) {
       opacity: 1
     }, 500, 'swing');
   });  
+  $note.data('latLon', noteLatLon);
 }
 
 function clearForm() {
@@ -94,8 +103,21 @@ function clearNotes() {
 }
 
 function updateCurrentPosition(position) {
+	// Update the latitude and longitude in the write-note form
 	currentPosition = position.coords;
-	$('.current-gps-coordinates span').text(currentPosition.latitude + ', ' + currentPosition.longitude);
+	var lat = currentPosition.latitude,
+		lon = currentPosition.longitude;
+	$('.current-gps-coordinates span').text(lat + ', ' + lon);
+	
+	// Update the distance to each note in the note list
+	currentLatLon = new LatLon(lat, lon);
+	var $notes = $('.note'),
+		numNotes = $notes.length;
+	for (var i=0; i < numNotes; i++) {
+		var $note = $notes.eq(i);
+			noteLatLon = $.data($note[0], 'latLon');
+		$note.find('.distance .value').text( currentLatLon.distanceTo(noteLatLon) + ' km' );
+	}
 }
 
 $(document).ready(function() {
